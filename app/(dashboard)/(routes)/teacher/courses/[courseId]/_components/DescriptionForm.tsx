@@ -6,6 +6,7 @@ import axios from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
+import { Course } from "@prisma/client";
 
 import {
     Form,
@@ -22,11 +23,9 @@ import toast from "react-hot-toast"
 import { cn } from "@/lib/utils"
 
 interface DescriptionFormProps {
-    initialData: {
-        description: string;
-    }
-    courseId: string;
-}
+  initialData: Course;
+  courseId: string;
+};
 
 const formSchema = z.object({
     description: z.string().min(1, {
@@ -45,9 +44,11 @@ export default function DescriptionForm({
 
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: initialData,
-    })
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        description: initialData?.description || ""
+      },
+    });
 
     const { isSubmitting, isValid } = form.formState
 
