@@ -8,6 +8,7 @@ import { ArrowLeft, LayoutDashboard } from 'lucide-react';
 
 import IconBadge from '@/components/IconBadge';
 import ChapterTitleForm from './_components/ChapterTitleForm';
+import ChapterDescriptionForm from './_components/ChapterDescriptionForm';
 
 export default async function ChapterIdPage({
     params
@@ -79,6 +80,7 @@ export default async function ChapterIdPage({
                             </h2>
                         </div>
                         <ChapterTitleForm initialData={chapter} courseId={params.courseId} chapterId={params.chapterId} />
+                        <ChapterDescriptionForm initialData={chapter} courseId={params.courseId} chapterId={params.chapterId} />
                     </div>
                 </div>
             </div>
