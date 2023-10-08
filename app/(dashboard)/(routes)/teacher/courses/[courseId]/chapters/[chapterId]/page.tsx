@@ -12,6 +12,7 @@ import ChapterDescriptionForm from './_components/ChapterDescriptionForm';
 import { ChapterAccessForm } from './_components/ChapterAccessForm';
 import { ChapterVideoForm } from './_components/ChapterVideoForm';
 import { Banner } from '@/components/Banner';
+import ChapterActions from './_components/ChapterActions';
 
 export default async function ChapterIdPage({
     params
@@ -49,6 +50,8 @@ export default async function ChapterIdPage({
 
     const completionText = `(${completedFields}/${totalFields})`
 
+    const isComplete = requiredFields.every(Boolean)
+
 
     return (
         <>
@@ -77,6 +80,7 @@ export default async function ChapterIdPage({
                                     Complete all fields {completionText}
                                 </span>
                             </div>
+                            <ChapterActions disabled={!isComplete} courseId={params.courseId} chapterId={params.chapterId} isPublished={chapter.isPublished} />
                         </div>
                     </div>
                 </div>
